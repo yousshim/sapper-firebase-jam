@@ -11,17 +11,14 @@ on:
 jobs:
   firebase-deploy:
     runs-on: ubuntu-latest
-
+    env:
+      FIREBASE_ADMIN_AUTH: ${{ secrets.FIREBASE_ADMIN_AUTH }}
+      GOOGLE_APPLICATION_CREDENTIALS: 'secret.json'
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: "10.x"
-        env:
-          FIREBASE_ADMIN_AUTH: ${{ secrets.FIREBASE_ADMIN_AUTH }}
-          GOOGLE_APPLICATION_CREDENTIALS: firebase_admin_auth.json
-      - run: 'echo "$GOOGLE_APPLICATION_CREDENTIALS"'
-        shell: bash
+          node-version: "10.x"         
       - run: 'echo "$FIREBASE_ADMIN_AUTH" > "$GOOGLE_APPLICATION_CREDENTIALS"'
         shell: bash
       - run: npm install
