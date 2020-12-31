@@ -20,6 +20,8 @@ jobs:
         env:
           FIREBASE_ADMIN_AUTH: ${{ secrets.FIREBASE_ADMIN_AUTH }}
           GOOGLE_APPLICATION_CREDENTIALS: firebase_admin_auth.json
+      - run: 'echo "$GOOGLE_APPLICATION_CREDENTIALS"'
+        shell: bash
       - run: 'echo "$FIREBASE_ADMIN_AUTH" > "$GOOGLE_APPLICATION_CREDENTIALS"'
         shell: bash
       - run: npm install
