@@ -19,8 +19,9 @@ jobs:
           node-version: "10.x"
         env:
           FIREBASE_ADMIN_AUTH: ${{ secrets.FIREBASE_ADMIN_AUTH }}
-          GOOGLE_APPLICATION_CREDENTIALS: "/tmp/firebase_admin_auth.json"  
+          GOOGLE_APPLICATION_CREDENTIALS: "/tmp/firebase_admin_auth.json"
       - run: "echo $FIREBASE_ADMIN_AUTH > $GOOGLE_APPLICATION_CREDENTIALS"
+        shell: bash
       - run: npm install
       - run: npm run export
       - uses: w9jds/firebase-action@master
