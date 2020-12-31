@@ -17,10 +17,10 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "10.x"
-      - run: "echo $FIREBASE_ADMIN_AUTH > $GOOGLE_APPLICATION_CREDENTIALS"
         env:
-          FIREBASE_ADMIN_AUTH: { { secrets.FIREBASE_ADMIN_AUTH } }
-          GOOGLE_APPLICATION_CREDENTIALS: "/tmp/firebase_admin_auth.json"
+          FIREBASE_ADMIN_AUTH: ${{ secrets.FIREBASE_ADMIN_AUTH }}
+          GOOGLE_APPLICATION_CREDENTIALS: "/tmp/firebase_admin_auth.json"  
+      - run: "echo $FIREBASE_ADMIN_AUTH > $GOOGLE_APPLICATION_CREDENTIALS"
       - run: npm install
       - run: npm run export
       - uses: w9jds/firebase-action@master
